@@ -13,9 +13,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ApiService _apiService = ApiService();
 
-  //Test
-  int _selectedIndex = 0;
-
   List<Movie> _allMovies = [];
   List<Movie> _trendingMovies = [];
   List<Movie> _popularMovies = [];
@@ -31,13 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
       _allMovies = allMoviesData.map((json) => Movie.fromJson(json)).toList();
       _trendingMovies = trendingMoviesData.map((json) => Movie.fromJson(json)).toList();
       _popularMovies = popularMoviesData.map((json) => Movie.fromJson(json)).toList();
-    });
-  }
-
-  // Test
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;       
     });
   }
 
@@ -58,30 +48,10 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildMoviesList("All Movies", _allMovies),
-            _buildMoviesList("Trending Movies", _popularMovies),
+            _buildMoviesList("Trending Movies", _trendingMovies),
             _buildMoviesList("Popular Movies", _popularMovies),
           ],
         ),
-      ),
-
-      // Test
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorite'
-          ),
-        ],
       ),
     );
   }
