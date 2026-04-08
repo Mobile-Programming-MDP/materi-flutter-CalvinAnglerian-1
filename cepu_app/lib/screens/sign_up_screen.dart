@@ -11,9 +11,16 @@ class SignUpScreen extends StatefulWidget {
 
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  // Tambahkan name controller
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+
+  String generateAvatarUrl(String? fullName) {
+    final formattedName = fullName!.trim().replaceAll('', '+')
+    return 'https://ui-avatars.com/api/?name=$formattedName&color=FFFFFF&background-000000'
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           children: [
             const SizedBox(height: 32.0),
+            TextField(
+              controller: _nameController,
+              decoration: const InputDecoration(
+                labelText: 'Display Name',
+                border: OutlineInputBorder(),
+              ),
+            ),
 
+            const SizedBox(height: 32.0)
             TextField(
               controller: _emailController,
               decoration: const InputDecoration(
@@ -77,6 +92,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
       );
     } else {
       try {
+        // 3. Buat variabel userCredential dan set DisplayName
+        UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: _emailController.text,
+            password: _passwordController.text
+          );
+        UserCredential.user?.updateDisplayName(_nameController.text),
+      
+        if (mounted) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const SignInScreen)
+          );
+        }
+      } on FirebaseAuthException catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Gagal Mendaftar : $(e.message)')),
+          );
+        }
+      }
+
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailController.text, 
           password: _passwordController.text,
