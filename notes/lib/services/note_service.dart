@@ -3,9 +3,10 @@ import 'package:notes/models/note.dart';
 
 class NoteService {
   static final FirebaseFirestore _database = FirebaseFirestore.instance;
-  static final CollectionReference _noteCollection = 
-    _database.collection('notes');
-  
+  static final CollectionReference _notesCollection = _database.collection(
+    'notes',
+  );
+
   // Method tambah data
   static Future<void> addNote(Note note) async {
     Map<String, dynamic> newNote = {
@@ -15,28 +16,7 @@ class NoteService {
       'created_at': FieldValue.serverTimestamp(),
       'update_at': FieldValue.serverTimestamp(),
     };
-    await _noteCollection.add(newNote);
-  }
-
-  // Method menampilkan data
-  static Stream<List<Note>> getNoteList() {
-    return _noteCollection.snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        return Note(
-          id: doc.id,
-          title: data['title'], 
-          description: data ['description'],
-          imageBase64: data['image_base_64'],
-          createdAt: data['created_at'] != null
-            ? data['created_at'] as Timestamp
-            : null,
-          updatedAt: data['update_at'] != null
-            ? data['updated_at'] as Timestamp
-            : null,
-        );
-      }).toList();
-    });
+    await _notesCollection.add(newNote);
   }
 
   // Method untuk ubah data
@@ -49,21 +29,37 @@ class NoteService {
       'updated_at': FieldValue.serverTimestamp(),
     };
 
-    await _noteCollection.doc(note.id).update(updateNote);
+    await _notesCollection.doc(note.id).update(updateNote);
   }
 
   // Method untuk hapus data
   static Future<void> deleteNote(Note note) async {
-    await _noteCollection.doc(note.id).delete();
+    await _notesCollection.doc(note.id).delete();
   }
 
-  // Method upload image
-  static Future<String?> uploadImage(File imageFile) async {
-    try {
-      String fileName = path.basename(imageFile.path);
-      Reference ref = _storage.ref().child('images/$fileName');
-    } catch (e) {
-      
-    }
+  //
+  static Future<QuerySnapshot> retrieveNotes() {
+    return _notesCollection.get();
+  }
+
+  // Method menampilkan data
+  static Stream<List<Note>> getNoteList() {
+    return _notesCollection.snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        return Note(
+          id: doc.id,
+          title: data['title'],
+          description: data['description'],
+          imageBase64: data['image_base_64'],
+          createdAt: data['created_at'] != null
+              ? data['created_at'] as Timestamp
+              : null,
+          updatedAt: data['update_at'] != null
+              ? data['updated_at'] as Timestamp
+              : null,
+        );
+      }).toList();
+    });
   }
 }
