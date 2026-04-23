@@ -19,7 +19,7 @@ class _NoteListScreenState extends State<NoteListScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
-            context: context,
+            context: context, 
             builder: (context) {
               return NoteDialog();
             },
@@ -38,7 +38,7 @@ class NoteList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: NoteService.getNoteList(),
+      stream: NoteService.getNoteList(), 
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
@@ -54,14 +54,14 @@ class NoteList extends StatelessWidget {
                   child: ListTile(
                     onTap: () {
                       showDialog(
-                        context: context,
+                        context: context, 
                         builder: (context) {
                           return NoteDialog(note: document);
                         },
                       );
                     },
                     title: Text(document.title),
-                    subtitle: Text(document.description),
+                    subtitle:  Text(document.description),
                     trailing: InkWell(
                       onTap: () {
                         showAlertDialog(context, document);
@@ -104,7 +104,7 @@ class NoteList extends StatelessWidget {
       actions: [cancelButton, continueButton],
     );
 
-    // show the dialog
+    // snow the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
