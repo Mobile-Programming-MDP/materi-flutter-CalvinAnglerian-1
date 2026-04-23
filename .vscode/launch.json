@@ -1,0 +1,148 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cepu_app",
+            "cwd": "cepu_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "cepu_app (profile mode)",
+            "cwd": "cepu_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "cepu_app (release mode)",
+            "cwd": "cepu_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "daftar_belanja",
+            "cwd": "daftar_belanja",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "daftar_belanja (profile mode)",
+            "cwd": "daftar_belanja",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "daftar_belanja (release mode)",
+            "cwd": "daftar_belanja",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "karyawan",
+            "cwd": "karyawan",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "karyawan (profile mode)",
+            "cwd": "karyawan",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "karyawan (release mode)",
+            "cwd": "karyawan",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "latihanuts",
+            "cwd": "latihanuts",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "latihanuts (profile mode)",
+            "cwd": "latihanuts",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "latihanuts (release mode)",
+            "cwd": "latihanuts",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "notes",
+            "cwd": "notes",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "notes (profile mode)",
+            "cwd": "notes",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "notes (release mode)",
+            "cwd": "notes",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "pilem",
+            "cwd": "pilem",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "pilem (profile mode)",
+            "cwd": "pilem",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "pilem (release mode)",
+            "cwd": "pilem",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "latihanuts",
+            "cwd": "latihanuts\\latihanuts",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "latihanuts (profile mode)",
+            "cwd": "latihanuts\\latihanuts",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "latihanuts (release mode)",
+            "cwd": "latihanuts\\latihanuts",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

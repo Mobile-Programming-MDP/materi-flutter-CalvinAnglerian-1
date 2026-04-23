@@ -5,8 +5,8 @@ class Note {
   final String title;
   final String description;
   String? imageBase64;
-  double? latitude;
-  double? longitude;
+  String? latitude;
+  String? longitude;
   Timestamp? createdAt;
   Timestamp? updatedAt;
 
@@ -15,6 +15,8 @@ class Note {
     required this.title,
     required this.description,
     this.imageBase64,
+    this.latitude,
+    this.longitude,
     this.createdAt,
     this.updatedAt,
   });
@@ -26,6 +28,8 @@ class Note {
       title: data['title'],
       description: data['description'],
       imageBase64: data['imageBase64'],
+      latitude: data['latitude'],
+      longitude: data['longitude'],
       createdAt: data['created_at'] as Timestamp,
       updatedAt: data['updated_at'] as Timestamp,
     );
@@ -36,6 +40,8 @@ class Note {
       'title': title,
       'description': description,
       'imageBase64': imageBase64,
+      'latitude': latitude,
+      'longitude': longitude,
       'created_at': createdAt,
       'updated_at': updatedAt
     };

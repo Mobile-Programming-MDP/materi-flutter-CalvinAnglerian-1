@@ -13,6 +13,8 @@ class NoteService {
       'title': note.title,
       'description': note.description,
       'image_base_64': note.imageBase64,
+      'latitude': note.latitude,
+      'longitude': note.longitude,
       'created_at': FieldValue.serverTimestamp(),
       'update_at': FieldValue.serverTimestamp(),
     };
@@ -24,7 +26,9 @@ class NoteService {
     Map<String, dynamic> updateNote = {
       'title': note.title,
       'description': note.description,
-      '_base64Image': note.imageBase64,
+      'image_base_64': note.imageBase64,
+      'latitude': note.latitude,
+      'longitude': note.longitude,
       'created_at': note.createdAt,
       'updated_at': FieldValue.serverTimestamp(),
     };
@@ -58,6 +62,8 @@ class NoteService {
           updatedAt: data['update_at'] != null
               ? data['updated_at'] as Timestamp
               : null,
+          latitude: data['latitude'],
+          longitude: data['longitude'],
         );
       }).toList();
     });
