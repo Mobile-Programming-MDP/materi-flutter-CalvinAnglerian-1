@@ -16,7 +16,7 @@ class NoteService {
       'latitude': note.latitude,
       'longitude': note.longitude,
       'created_at': FieldValue.serverTimestamp(),
-      'update_at': FieldValue.serverTimestamp(),
+      'updated_at': FieldValue.serverTimestamp(),
     };
     await _notesCollection.add(newNote);
   }
@@ -59,7 +59,7 @@ class NoteService {
           createdAt: data['created_at'] != null
               ? data['created_at'] as Timestamp
               : null,
-          updatedAt: data['update_at'] != null
+          updatedAt: data['updated_at'] != null
               ? data['updated_at'] as Timestamp
               : null,
           latitude: data['latitude'],
