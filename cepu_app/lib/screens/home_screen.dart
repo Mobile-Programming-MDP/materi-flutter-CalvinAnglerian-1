@@ -1,9 +1,22 @@
 import 'package:cepu_app/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cepu_app/screens/add_post_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    // #TODO: implement initstate
+    super.initState();
+    //testSetUser();
+  }
 
   Future<void> signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
@@ -14,50 +27,60 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  String? _idToken = "";
-  String? _uid = "";
-  String? _email = "";
-  Future<void> getFirebaseAuthUser() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if(user != null) {
-      _uid = user.uid;
-      _email = user.email;
-      await user
-        .getIdToken(true)
-        .then(
-          (v) => {
-            setState(() {
-              _idToken = v;
-            }),
-          },
-        );  
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Screen"),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text("Cepu App"),
         actions: [
           IconButton(
             onPressed: () {
               signOut(context);
             },
             icon: const Icon(Icons.logout),
+            tooltip: "Sign Out",
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Text("You Have Been Signed In with Token Id : $(_idToken!)"),
-            Text("Current user : $(_uid!)"),
-            Text("Current Email : $(_email!)"),
-          ],
-        ),
+      body: Column(
+        children: [
+          Center(
+            child: Text(
+              "Halo ${FirebaseAuth.instance.currentUser?.displayName}",
+            ),
+          ),
+          const Center(child: Text("You Have Been Signed In!")),  
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed:() {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const AddPostScreen()),
+          );
+        },
+        child: const Icon(Icons.add), 
       ),
     );
   }
 }
+
+
+  // String? _idToken = "";
+  // String? _uid = "";
+  // String? _email = "";
+  // Future<void> getFirebaseAuthUser() async {
+  //   User? user = FirebaseAuth.instance.currentUser;
+  //   if(user != null) {
+  //     _uid = user.uid;
+  //     _email = user.email;
+  //     await user
+  //       .getIdToken(true)
+  //       .then(
+  //         (v) => {
+  //           setState(() {
+  //             _idToken = v;
+  //           }),
+  //         },
+  //       );  
+  //   }
+  // }

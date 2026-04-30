@@ -1,0 +1,8 @@
+Implementasi Firebase Firestore pada Aplikasi Cepu
+1. Install depedensi : cloud_firestore, image_picker, geolocator, url_launcher
+2. Buat model post.dart di folder models, dgn property:
+id, image, description,, category, latitude, longitude, user_id, user_fullname
+
+3. Buat service post_service.dart di folder services
+4. Buat screen : add_post_screen.dart dan detail_screen.dart
+5. Tambahkan floating action button di home screen ke halaman AddPostScreen

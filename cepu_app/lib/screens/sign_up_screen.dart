@@ -9,7 +9,6 @@ class SignUpScreen extends StatefulWidget {
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-
 class _SignUpScreenState extends State<SignUpScreen> {
   // Tambahkan name controller
   final _nameController = TextEditingController();
@@ -18,8 +17,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _confirmPasswordController = TextEditingController();
 
   String generateAvatarUrl(String? fullName) {
-    final formattedName = fullName!.trim().replaceAll('', '+')
-    return 'https://ui-avatars.com/api/?name=$formattedName&color=FFFFFF&background-000000'
+    final formattedName = fullName!.trim().replaceAll('', '+');
+    return 'https://ui-avatars.com/api/?name=$formattedName&color=FFFFFF&background-000000';
   }
 
   @override
@@ -38,8 +37,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 border: OutlineInputBorder(),
               ),
             ),
-
-            const SizedBox(height: 32.0)
+            
+            const SizedBox(height: 32.0),
             TextField(
               controller: _emailController,
               decoration: const InputDecoration(
@@ -93,33 +92,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
     } else {
       try {
         // 3. Buat variabel userCredential dan set DisplayName
-        UserCredential userCredential = await FirebaseAuth.instance
+        UserCredential user = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
             email: _emailController.text,
             password: _passwordController.text
           );
-        UserCredential.user?.updateDisplayName(_nameController.text),
-      
-        if (mounted) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const SignInScreen)
-          );
-        }
-      } on FirebaseAuthException catch (e) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Gagal Mendaftar : $(e.message)')),
-          );
-        }
-      }
+          await user.user?.updateDisplayName(_nameController.text);
 
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text, 
-          password: _passwordController.text,
-        );
         if (mounted) {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const SignInScreen()),
+            MaterialPageRoute(builder: (context) => const SignInScreen())
           );
         }
       } on FirebaseAuthException catch (e) {
