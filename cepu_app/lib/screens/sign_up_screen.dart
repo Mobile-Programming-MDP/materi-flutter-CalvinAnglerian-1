@@ -10,7 +10,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  // Tambahkan name controller
+  //1. Tambahkan name controller
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -30,6 +30,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           children: [
             const SizedBox(height: 32.0),
+            //2. Tambahkan TextField Display
             TextField(
               controller: _nameController,
               decoration: const InputDecoration(
@@ -38,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             
-            const SizedBox(height: 32.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: _emailController,
               decoration: const InputDecoration(
@@ -92,12 +93,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     } else {
       try {
         // 3. Buat variabel userCredential dan set DisplayName
-        UserCredential user = await FirebaseAuth.instance
+        UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
             email: _emailController.text,
             password: _passwordController.text
           );
-          await user.user?.updateDisplayName(_nameController.text);
+        userCredential.user?.updateDisplayName(_nameController.text);
 
         if (mounted) {
           Navigator.of(context).pushReplacement(

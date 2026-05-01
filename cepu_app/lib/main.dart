@@ -1,6 +1,5 @@
 import 'package:cepu_app/firebase_options.dart';
 import 'package:cepu_app/screens/home_screen.dart';
-// import 'package:cepu_app/screens/main_screen.dart';
 import 'package:cepu_app/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

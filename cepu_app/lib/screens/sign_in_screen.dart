@@ -44,7 +44,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 obscureText: true,
               ),
 
-              const SizedBox(height: 16.0,),
+              const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () async {
                   try {

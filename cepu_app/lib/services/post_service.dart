@@ -18,7 +18,7 @@ class PostService {
       'created_at': FieldValue.serverTimestamp(),
       'updated_at': FieldValue.serverTimestamp(),
       'user_id': post.userId,
-      'fullname': post.fullName,
+      'userFullName': post.userFullName,
     };
     await _firstCollection.add(newPost);
   }
@@ -34,7 +34,7 @@ class PostService {
       'created_at': post.createdAt,
       'updated_at': FieldValue.serverTimestamp(),
       'user_id': post.userId,
-      'full_name': post.fullName,
+      'userFullName': post.userFullName,
     };
     await _firstCollection.doc(post.id).update(updatePost);
   }
@@ -42,6 +42,10 @@ class PostService {
   static Future<void> deletePost(Post post) async {
     await _firstCollection.doc(post.id).delete();
   }
+
+  static Future<QuerySnapshot> retrievePost() {
+    return _firstCollection.get();
+  } 
 
   static Stream<List<Post>> getPostList() {
     return _firstCollection.snapshots().map((snapshot) {
@@ -61,7 +65,7 @@ class PostService {
           latitude: data['latitude'],
           longitude: data['longitude'],
           userId: data['user_id'],
-          fullName: data['full_name'],
+          userFullName: data['user_full_name'],
         );
       }).toList();
     });
