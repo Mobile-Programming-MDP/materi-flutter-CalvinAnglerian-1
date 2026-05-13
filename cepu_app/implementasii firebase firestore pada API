@@ -6,3 +6,12 @@ id, image, description,, category, latitude, longitude, user_id, user_fullname
 3. Buat service post_service.dart di folder services
 4. Buat screen : add_post_screen.dart dan detail_screen.dart
 5. Tambahkan floating action button di home screen ke halaman AddPostScreen
+
+
+Latihan 06 mei 2026
+1. Install dependensi flutter_map dan latlong2
+2. Buat screen map_detail_screen.dart
+3. Buat statefull widget dengan nama map_detail_screen 
+tampilkan peta dan marker location menggunakan widget flutterMap 
+4. Tambahkan elevated button pada detail screen dengan 
+MaterialPageRoute ke MapDetailScreen(post: post)
